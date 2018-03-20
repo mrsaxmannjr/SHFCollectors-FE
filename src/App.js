@@ -1,18 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+
+import API from "./lib/API";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      figures: [],
+    };
+  }
+
+  async componentDidMount() {
+    const figures = await API.getAll();
+    console.log(figures);
+    this.setState({
+      figures,
+    });
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div >
+        <header>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a className="navbar-brand" href="#">Figures</a>
+          </nav>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <main className="container">
+          <section className="row">
+            {this.state.figures.map(figure => (
+              <div className="card col-sm-4" key={figure.id}>
+                <img className="card-img-top" src={figure.mainImage} alt={figure.name} />
+                <div className="card-body">
+                  <h5 className="card-title">{figure.name}</h5>
+                  <p className="card-text">{figure.line}</p>
+                  <a href="#" className="btn btn-primary">{figure.line}</a>
+                </div>
+              </div>
+            ))}
+          </section>
+        </main>
       </div>
     );
   }
