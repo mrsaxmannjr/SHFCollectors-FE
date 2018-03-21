@@ -12,6 +12,9 @@ import Footer from "./Components/Footer";
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+
+    };
   }
   render() {
     return (
@@ -19,10 +22,10 @@ class App extends Component {
         <div >
           <Header />
           <Route exact path="/" component={Home} />
-          {/* <Route path="/FiguresGrid" component={FiguresGrid} /> */}
+          <Route path="/FiguresGrid" component={FiguresGrid} />
           <Route path="/FigurePage" component={FigurePage} />
           <Route path="/Collection" component={Collection} />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
 
