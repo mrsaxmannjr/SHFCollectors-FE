@@ -4,8 +4,7 @@ import "./App.css";
 
 import Header from "./Components/Header";
 import Home from "./Components/Home";
-import FiguresGrid from "./Components/FiguresGrid";
-import FigurePage from "./Components/FigurePage";
+import FigureDetail from "./Components/FigureDetail";
 import Collection from "./Components/Collection";
 import Footer from "./Components/Footer";
 
@@ -13,7 +12,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
     };
   }
   render() {
@@ -22,13 +20,11 @@ class App extends Component {
         <div >
           <Header />
           <Route exact path="/" component={Home} />
-          <Route path="/FiguresGrid" component={FiguresGrid} />
-          <Route path="/FigurePage" component={FigurePage} />
+          <Route path="/FigurePage" component={FigureDetail} />
           <Route path="/Collection" component={Collection} />
           {/* <Footer /> */}
         </div>
       </Router>
-
     );
   }
 }
