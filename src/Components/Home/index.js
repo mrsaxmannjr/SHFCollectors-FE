@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import FiguresGrid from "../FiguresGrid";
 
@@ -39,6 +40,10 @@ class Home extends Component {
         </div>
 
         <FiguresGrid />
+
+        {/* <Link to="/AllFigures">
+          <button type="button" className="btn btn-primary btn-lg btn-block">All Figures</button>
+        </Link> */}
 
       </TheHome>
     );

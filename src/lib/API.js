@@ -7,6 +7,10 @@ export default {
     const response = await fetch(`${API_URL}figures`);
     return response.json();
   },
+  async getAllTEST() {
+    const response = await fetch("https://apitestcapstone.herokuapp.com/list");
+    return response.json();
+  },
   async getDragonBall() {
     const response = await fetch(`${API_URL}dragonBall`);
     return response.json();

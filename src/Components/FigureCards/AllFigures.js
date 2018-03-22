@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 import API from "../../lib/API";
+import Figure from "../Figure";
 
 class AllFigures extends Component {
   state = {
@@ -15,6 +18,7 @@ class AllFigures extends Component {
       figures,
     });
   }
+
   render() {
     return (
       <AllFigs className="card">
@@ -25,18 +29,9 @@ class AllFigures extends Component {
             </button>
           </h5>
         </div>
-        <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <section className="row">
-            {this.state.figures.map(figure => (
-              <div className="card col-xs-12 col-sm-6 col-md-4" key={figure.id}>
-                <img className="card-img-top" src={figure.images} alt={figure.name} />
-                <div className="card-body">
-                  <h5 className="card-title">{figure.name}</h5>
-                  <p className="card-text">{figure.line}</p>
-                  <a href="#" className="btn btn-primary">{figure.line}</a>
-                </div>
-              </div>
-            ))}
+            {this.state.figures.map(figure => <Figure key={figure.id} figure={figure} />)}
           </section>
         </div>
       </AllFigs>

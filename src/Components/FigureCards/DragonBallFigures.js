@@ -6,18 +6,13 @@ import API from "../../lib/API";
 class DragonBallFigures extends Component {
   state = {
       dragonBall: [],
-
     };
 
   async componentDidMount() {
     const dragonBall = await API.getDragonBall();
-    const starWars = await API.getStarWars();
-    const marvel = await API.getMarvel();
     console.log(dragonBall);
-
     this.setState({
       dragonBall,
-
     });
   }
   render() {

@@ -20,7 +20,7 @@ class App extends Component {
         <div >
           <Header />
           <Route exact path="/" component={Home} />
-          <Route path="/FigurePage" component={FigureDetail} />
+          <Route path="/:id" component={FigureDetail} />
           <Route path="/Collection" component={Collection} />
           {/* <Footer /> */}
         </div>
