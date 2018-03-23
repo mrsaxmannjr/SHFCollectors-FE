@@ -17,7 +17,7 @@ class AllFigures extends Component {
     this.setState({
       figures,
     });
-  }
+  } 
 
   render() {
     return (

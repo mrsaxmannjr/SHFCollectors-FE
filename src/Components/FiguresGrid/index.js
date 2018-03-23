@@ -10,8 +10,8 @@ import MarvelFigures from "../FigureCards/MavelFigures";
 const FiguresGrid = () => (
   <TheFG className="container">
     <div id="accordion" >
-      <AllFigures />
-      {/* <AllFiguresTEST /> */}
+      {/* <AllFigures /> */}
+      <AllFiguresTEST />
       {/* <DragonBallFigures /> */}
       {/* <StarWarsFigures /> */}
       {/* <MarvelFigures /> */}

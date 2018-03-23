@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 import API from "../../lib/API";
+import Figure from "../Figure";
+
 
 class AllFiguresTEST extends Component {
   state = {
@@ -9,11 +13,14 @@ class AllFiguresTEST extends Component {
     };
 
   async componentDidMount() {
-    const figures = await API.getAllTEST();
-    console.log(figures[0].LargeImage[0].URL[0]);
-    console.log(figures[0]);
+    const data = await API.getAllTEST();
+    const figures = data.filter(figure => figure.LargeImage)
+    console.log(figures);
+    console.log(figures.map(figure => figure.ASIN[0]));
+    console.log(figures.map(figure => figure.LargeImage[0].URL[0]));
+
     this.setState({
-      figures: figures
+      figures: figures,
     });
   }
 
@@ -27,18 +34,9 @@ class AllFiguresTEST extends Component {
             </button>
           </h5>
         </div>
-        <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <section className="row">
-            {this.state.figures.map(figure => (
-              <div className="card col-xs-12 col-sm-6 col-md-4" key="">
-                <img className="card-img-top" src={figure.images} alt="test" />
-                {/* <div className="card-body">
-                  <h5 className="card-title">{figure.name}</h5>
-                  <p className="card-text">{figure.line}</p>
-                  <a href="#" className="btn btn-primary">{figure.line}</a>
-                </div> */}
-              </div>
-            ))}
+            {this.state.figures.map(figure => <Figure key={figure.ASIN[0]} figure={figure} />)}
           </section>
         </div>
       </AllFigs>

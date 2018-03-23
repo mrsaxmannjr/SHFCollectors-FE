@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Overdrive from "react-overdrive";
 
 const Figure = ({ figure }) => (
-  <div className="card col-xs-12 col-sm-6 col-md-4" key={figure.id}>
-    <Link to={`/${figure.id}`}>
-      <Overdrive id={figure.id} duration="500">
-        <img id={figure.id} className="card-img-top" src={figure.images[0]} alt={figure.name} />
+  <div className="card col-xs-12 col-sm-6 col-md-4" key={figure.ASIN[0]}>
+    <Link to={`/${figure.ASIN[0]}`}>
+      <Overdrive id={figure.ASIN[0]} duration="500">
+        <img id={figure.ASIN[0]} className="card-img-top" src={figure.LargeImage[0].URL[0]} alt={figure.ASIN[0]} />
       </Overdrive>
     </Link>
     {/* <div className="card-body">

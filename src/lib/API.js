@@ -2,13 +2,17 @@ const API_URL = window.location.hostname == "localhost" ?
   "http://localhost:3000/api/v1/" :
   "https://shfexpress.herokuapp.com/api/v1/";
 
+const APAC_URL = window.location.hostname == "localhost" ?
+  "http://localhost:3000/list" :
+  "https://apitestcapstone.herokuapp.com/list";
+
 export default {
   async getAll() {
     const response = await fetch(`${API_URL}figures`);
     return response.json();
   },
   async getAllTEST() {
-    const response = await fetch("https://apitestcapstone.herokuapp.com/list");
+    const response = await fetch(`${APAC_URL}`);
     return response.json();
   },
   async getDragonBall() {
