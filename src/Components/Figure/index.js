@@ -9,11 +9,11 @@ const Figure = ({ figure }) => (
         <img id={figure.ASIN[0]} className="card-img-top" src={figure.LargeImage[0].URL[0]} alt={figure.ASIN[0]} />
       </Overdrive>
     </Link>
-    {/* <div className="card-body">
-      <h5 className="card-title">{figure.name}</h5>
-      <p className="card-text">{figure.description[0]}</p>
-      <a href="#" className="btn btn-primary">{figure.price}</a>
-    </div> */}
+    <div className="card-body">
+      <h5 className="card-title">{figure.ItemAttributes[0].Title[0]}</h5>
+      {/* <p className="card-text">{figure.description[0]}</p>
+      <a href="#" className="btn btn-primary">{figure.price}</a> */}
+    </div>
   </div>
 );
 export default Figure;
