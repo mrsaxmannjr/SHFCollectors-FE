@@ -14,6 +14,7 @@ class AllFiguresTEST extends Component {
 
   async componentDidMount() {
     const data = await API.getAllTEST();
+    console.log("All Data: ", data);
     const figures = data.filter(figure => figure.LargeImage)
     // console.log(figures);
     // console.log(figures.map(figure => figure.ASIN[0]));
