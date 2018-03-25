@@ -27,6 +27,10 @@ export default {
     const response = await fetch(`${API_URL}marvel`);
     return response.json();
   },
+  async getCollectionData() {
+    const response = await fetch(`${API_URL}collection`);
+    return response.json();
+  },
   async postFigureData(data) {
     await fetch(`${API_URL}collection`, {
       method: "POST",
