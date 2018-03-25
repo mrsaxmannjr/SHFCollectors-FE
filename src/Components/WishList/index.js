@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import API from "../../lib/API";
-import WishList from "../WishList";
-import Achievements from "../Achievements";
 
 
-class Collection extends Component {
+class WishList extends Component {
   state = {
       figures: [],
     };
@@ -24,24 +22,13 @@ class Collection extends Component {
   render() {
     console.log("Collection state: ", this.state.figures);
     return (
-      <TheCollection>
-        <ul className="nav nav-tabs nav-justified nav-fill ">
-          <li className="nav-item">
-            <a className="nav-link active" data-toggle="tab" href="#collection">Collection</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#wish-list">Collection Wish List</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#achievements">Collection Achievements</a>
-          </li>
-        </ul>
+      <TheWishList>
         <div id="myTabContent" className="tab-content">
           <div className="tab-pane fade show active" id="collection">
             <h5 id="collection-progress">Collection Progress</h5>
-            <div className="progress ">
-              <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
-            </div>
+              <div className="progress ">
+                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
+              </div>
             <div id="shelfDiv" className="container">
               {this.state.figures.map(figure =>
                 <div className="card" >
@@ -53,31 +40,25 @@ class Collection extends Component {
               )}
             </div>
           </div>
-          <div className="tab-pane fade" id="wish-list">
-            <WishList />
-          </div>
-          <div className="tab-pane fade" id="achievements">
-            <Achievements />
-          </div>
         </div>
-      </TheCollection>
+      </TheWishList>
     );
   }
 }
 
-export default Collection;
+export default WishList;
 
-const TheCollection = styled.div`
-padding-top: 1rem;
-#collection-progress{
+const TheWishList = styled.div`
+#collection-progress {
   padding-top: 1rem;
   padding-bottom: .5rem;
 }
+
 #shelfDiv {
   display: flex;
 }
 
-.card{
+.card {
   width: 10rem;
 }
 `;
