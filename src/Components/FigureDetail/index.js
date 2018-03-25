@@ -5,6 +5,7 @@ import Overdrive from "react-overdrive";
 
 import API from "../../lib/API";
 import Figure from "../Figure";
+import PostButton from "../PostButton";
 
 class FigureDetails extends Component {
   state = {
@@ -30,7 +31,7 @@ class FigureDetails extends Component {
     const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
     // console.log("figure state ", figure[0]);
     this.setState({
-      // figure: figure[0],
+      figure: figure[0],
       id: figure[0].ASIN[0],
       image: figure[0].LargeImage[0].URL[0],
       title: figure[0].ItemAttributes[0].Title[0],
@@ -51,7 +52,7 @@ class FigureDetails extends Component {
     // console.log("setState: ", this.state.figure);
     // const { figure } = this.state;
 
-    const { id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate } = this.state;
+    const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate } = this.state;
 
     console.log("id state: ", id);
     console.log("image state: ", image);
@@ -61,22 +62,24 @@ class FigureDetails extends Component {
     console.log("lowestPriceNew state: ", lowestPriceNew);
     console.log("listPrice state: ", listPrice);
     console.log("releaseDate state: ", releaseDate);
+    console.log("FigureDetail DATA: ", figure );
 
     return (
       <div className="card col-xs-12 col-sm-6 col-md-4" key={id}>
-      <Overdrive id={id} duration="500">
+        <Overdrive id={id} duration="500">
           <img id={id} className="card-img-top" src={image} alt={id} />
-      </Overdrive>
-    <div className="card-body">
-      <h5 className="card-title">{title}</h5>
-      <p className="card-text">{feature}</p>
+        </Overdrive>
+        <div className="card-body">
+          <h5 className="card-title">{title}</h5>
+          <p className="card-text">{feature}</p>
           <h5 className="card-title">Release Date: {releaseDate}</h5>
           <h5 className="card-title">Current List Price New: {listPrice}</h5>
           <h5 className="card-title">Best Price New: {lowestPriceNew}</h5>
           <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
           <a href={amazonUrl} target="_blank" className="btn btn-primary">Add to your Collectors Wish List</a>
-    </div>
+          <PostButton id={id} title={title} image={image} feature={feature}  />
         </div>
+      </div>
     );
   }
 }
