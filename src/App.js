@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Header from "./Components/Header";
@@ -19,9 +19,11 @@ class App extends Component {
       <Router>
         <div >
           <Header />
-          <Route exact path="/" component={Home} />
-          <Route path="/:id" component={FigureDetail} />
-          <Route path="/Collection" component={Collection} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/FigureDetail/:id" component={FigureDetail} />
+            <Route path="/Collection" component={Collection} />
+          </Switch>
           {/* <Footer /> */}
         </div>
       </Router>

@@ -41,10 +41,6 @@ class Home extends Component {
 
         <FiguresGrid />
 
-        {/* <Link to="/AllFigures">
-          <button type="button" className="btn btn-primary btn-lg btn-block">All Figures</button>
-        </Link> */}
-
       </TheHome>
     );
   }

@@ -1,5 +1,5 @@
 const API_URL = window.location.hostname == "localhost" ?
-  "http://localhost:3000/api/v1/" :
+  "http://localhost:3002/api/v1/" :
   "https://shfexpress.herokuapp.com/api/v1/";
 
 const APAC_URL = window.location.hostname == "localhost" ?

@@ -26,7 +26,6 @@ class FigureDetails extends Component {
     console.log(figures);
     // console.log(figures.map(figure => figure.ASIN[0]));
     // console.log(figures.map(figure => figure.LargeImage[0].URL[0]));
-    // console.log(this.props.match.params.id);
 
     const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
     // console.log("figure state ", figure[0]);
@@ -75,6 +74,7 @@ class FigureDetails extends Component {
           <h5 className="card-title">Current List Price New: {listPrice}</h5>
           <h5 className="card-title">Best Price New: {lowestPriceNew}</h5>
           <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
+          <a href={amazonUrl} target="_blank" className="btn btn-primary">Add to your Collectors Wish List</a>
     </div>
         </div>
     );
