@@ -31,8 +31,21 @@ export default {
     const response = await fetch(`${API_URL}collection`);
     return response.json();
   },
-  async postFigureData(data) {
+  async postCollectionData(data) {
     await fetch(`${API_URL}collection`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then(res => res.json());
+  },
+  async getWishListData() {
+    const response = await fetch(`${API_URL}wishlist`);
+    return response.json();
+  },
+  async postWishListData(data) {
+    await fetch(`${API_URL}wishlist`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

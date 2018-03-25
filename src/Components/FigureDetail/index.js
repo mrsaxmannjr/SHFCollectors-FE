@@ -5,7 +5,8 @@ import Overdrive from "react-overdrive";
 
 import API from "../../lib/API";
 import Figure from "../Figure";
-import PostButton from "../PostButton";
+import PostCollectionButton from "../PostButton/PostCollectionButton";
+import PostWishListButton from "../PostButton/PostWishListButton";
 
 class FigureDetails extends Component {
   state = {
@@ -77,7 +78,8 @@ class FigureDetails extends Component {
           <h5 className="card-title">Best Price New: {lowestPriceNew}</h5>
           <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
           <a href={amazonUrl} target="_blank" className="btn btn-primary">Add to your Collectors Wish List</a>
-          <PostButton id={id} title={title} image={image} feature={feature}  />
+          <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
+          <PostWishListButton id={id} title={title} image={image} feature={feature}  />
         </div>
       </div>
     );

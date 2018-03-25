@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import API from "../../lib/API";
 
-class PostButton extends Component {
+class PostCollectionButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class PostButton extends Component {
       feature: this.state.feature,
     };
     console.log("Fig Data from FORM: ", data);
-    API.postFigureData(data);
+    API.postCollectionData(data);
   }
 
   render() {
@@ -34,11 +34,11 @@ class PostButton extends Component {
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
-          <button type="submit" id="submit">Send</button>
+          <button type="submit" id="submit">Add to Collection</button>
         </form>
       </div>
     );
   }
 }
 
-export default PostButton;
+export default PostCollectionButton;

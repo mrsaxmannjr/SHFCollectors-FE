@@ -12,15 +12,15 @@ class WishList extends Component {
     };
 
   async componentDidMount() {
-    const figures = await API.getCollectionData();
-    console.log(figures.collection.map(figure => figure.feature));
+    const figures = await API.getWishListData();
+    console.log(figures.wishlist.map(figure => figure.feature));
     this.setState({
-      figures: figures.collection
+      figures: figures.wishlist
     });
   }
 
   render() {
-    console.log("Collection state: ", this.state.figures);
+    console.log("WishList state: ", this.state.figures);
     return (
       <TheWishList>
         <div id="myTabContent" className="tab-content">
