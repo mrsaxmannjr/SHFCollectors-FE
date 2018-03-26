@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Overdrive from "react-overdrive";
 
-const Figure = ({ figure }) => {
-  console.log("FIGURE STATE YO: ", figure);
-  return (
+const Figure = ({ figure }) =>
+  // console.log("FIGURE STATE YO: ", figure);
+  (
     <div className="card col-xs-12 col-sm-6 col-md-4" key={figure.ASIN[0]}>
       <Link to={`FigureDetail/${figure.ASIN[0]}`}>
         <Overdrive id={figure.ASIN[0]} duration="500">
@@ -16,5 +16,4 @@ const Figure = ({ figure }) => {
       </div>
     </div>
   );
-};
 export default Figure;

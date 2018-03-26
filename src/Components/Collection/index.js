@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
 import API from "../../lib/API";
@@ -15,14 +14,14 @@ class Collection extends Component {
 
   async componentDidMount() {
     const figures = await API.getCollectionData();
-    console.log(figures.collection.map(figure => figure.feature));
+    // console.log(figures.collection.map(figure => figure.feature));
     this.setState({
       figures: figures.collection
     });
   }
 
   render() {
-    console.log("Collection state: ", this.state.figures);
+    // console.log("Collection state: ", this.state.figures);
     return (
       <TheCollection>
         <ul className="nav nav-tabs nav-justified nav-fill ">
@@ -30,7 +29,7 @@ class Collection extends Component {
             <a className="nav-link active" data-toggle="tab" href="#collection">Collection</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#wish-list">Collection Wish List</a>
+            <a className="nav-link" data-toggle="tab" href="#wish-list">Wish List</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#achievements">Collection Achievements</a>

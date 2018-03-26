@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Overdrive from "react-overdrive";
 
-
 import API from "../../lib/API";
 import Figure from "../Figure";
 import PostCollectionButton from "../PostButton/PostCollectionButton";
@@ -25,12 +24,9 @@ class FigureDetails extends Component {
   async componentDidMount() {
     const data = await API.getAllTEST();
     const figures = await data.filter(figure => figure.LargeImage);
-    console.log(figures);
-    // console.log(figures.map(figure => figure.ASIN[0]));
-    // console.log(figures.map(figure => figure.LargeImage[0].URL[0]));
-
+    // console.log(figures);
     const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
-    // console.log("figure state ", figure[0]);
+
     this.setState({
       figure: figure[0],
       id: figure[0].ASIN[0],
@@ -42,28 +38,21 @@ class FigureDetails extends Component {
       listPrice: figure[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0],
       releaseDate: figure[0].ItemAttributes[0].ReleaseDate[0],
     });
-
   }
 
   render() {
-    // console.log("Image URL", this.state.figure && this.state.figure.LargeImage && this.state.figure.LargeImage[0].URL[0]);
-
-    // console.log("Image ID", this.state.figure.ASIN && this.state.figure.ASIN[0]);
-
-    // console.log("setState: ", this.state.figure);
-    // const { figure } = this.state;
 
     const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate } = this.state;
 
-    console.log("id state: ", id);
-    console.log("image state: ", image);
-    console.log("title state: ", title);
-    console.log("feature state: ", feature);
-    console.log("amazonUrl state: ", amazonUrl);
-    console.log("lowestPriceNew state: ", lowestPriceNew);
-    console.log("listPrice state: ", listPrice);
-    console.log("releaseDate state: ", releaseDate);
-    console.log("FigureDetail DATA: ", figure );
+    // console.log("id state: ", id);
+    // console.log("image state: ", image);
+    // console.log("title state: ", title);
+    // console.log("feature state: ", feature);
+    // console.log("amazonUrl state: ", amazonUrl);
+    // console.log("lowestPriceNew state: ", lowestPriceNew);
+    // console.log("listPrice state: ", listPrice);
+    // console.log("releaseDate state: ", releaseDate);
+    // console.log("FigureDetail DATA: ", figure );
 
     return (
       <div className="card col-xs-12 col-sm-6 col-md-4" key={id}>

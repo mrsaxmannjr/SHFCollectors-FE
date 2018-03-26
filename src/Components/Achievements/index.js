@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
 import API from "../../lib/API";
-
 
 class Achievements extends Component {
   state = {
@@ -13,7 +11,11 @@ class Achievements extends Component {
 
   async componentDidMount() {
     const figures = await API.getCollectionData();
-    console.log(figures.collection.map(figure => figure.feature));
+    console.log("Collection Titles:", figures.collection.map(figure => figure.title));
+    const titlesArray = figures.collection.map(figure => figure.title.toLowerCase());
+    const trueSaiyans = titlesArray.filter(title => title.includes("goku") || title.includes("vegeta") || title.includes("nappa") || title.includes("brolly"));
+    console.log("titlesArray: ", titlesArray);
+    console.log("Achievement Check:" , trueSaiyans.length >=4 ? true : false);
     this.setState({
       figures: figures.collection
     });
@@ -23,13 +25,9 @@ class Achievements extends Component {
     console.log("Collection state: ", this.state.figures);
     return (
       <TheAchievements>
-        <div id="myTabContent" className="tab-content">
-          <div className="tab-pane fade show active" id="collection">
-            <h5 id="collection-progress">Collection Progress</h5>
-              <div className="progress ">
-                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
-              </div>
-            <div id="shelfDiv" className="container">
+        <div id="accordion" >
+
+    </div>
               {this.state.figures.map(figure =>
                 <div className="card" >
                   <img className="card-img-top" src={figure.image} alt="Card image cap"/>
@@ -38,9 +36,6 @@ class Achievements extends Component {
                   </div>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
       </TheAchievements>
     );
   }

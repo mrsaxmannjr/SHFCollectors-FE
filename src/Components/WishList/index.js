@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
 import API from "../../lib/API";
-
 
 class WishList extends Component {
   state = {
@@ -13,14 +11,14 @@ class WishList extends Component {
 
   async componentDidMount() {
     const figures = await API.getWishListData();
-    console.log(figures.wishlist.map(figure => figure.feature));
+    // console.log(figures.wishlist.map(figure => figure.feature));
     this.setState({
       figures: figures.wishlist
     });
   }
 
   render() {
-    console.log("WishList state: ", this.state.figures);
+    // console.log("WishList state: ", this.state.figures);
     return (
       <TheWishList>
         <div id="myTabContent" className="tab-content">
