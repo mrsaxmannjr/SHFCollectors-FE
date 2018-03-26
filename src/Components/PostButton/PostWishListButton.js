@@ -27,10 +27,10 @@ class PostWishListButton extends Component {
   }
 
   render() {
-    console.log("id DATA from FigureDetail: ", this.props.id);
-    console.log("title DATA from FigureDetail: ", this.props.title);
-    console.log("image DATA from FigureDetail: ", this.props.image);
-    console.log("feature DATA from FigureDetail: ", this.props.feature);
+    // console.log("id DATA from FigureDetail: ", this.props.id);
+    // console.log("title DATA from FigureDetail: ", this.props.title);
+    // console.log("image DATA from FigureDetail: ", this.props.image);
+    // console.log("feature DATA from FigureDetail: ", this.props.feature);
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>

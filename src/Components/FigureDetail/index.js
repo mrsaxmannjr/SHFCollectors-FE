@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Overdrive from "react-overdrive";
+import styled from "styled-components";
+
+import Coverflow from 'react-coverflow';
+import { StyleRoot } from 'radium';
 
 import API from "../../lib/API";
 import Figure from "../Figure";
@@ -19,13 +23,29 @@ class FigureDetails extends Component {
       listPrice: [{ FormattedPrice: [] }],
       releaseDate: [{ ReleaseDate: [] }],
     },
+    figureSetURLs: [],
   };
 
   async componentDidMount() {
     const data = await API.getAllTEST();
     const figures = await data.filter(figure => figure.LargeImage);
-    // console.log(figures);
+
+    const imageSet = await data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
+    // console.log("imageSet: ", imageSet);
+    const set = await imageSet[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
+    // const setURLs = await set.map(img => img.LargeImage[0].URL[0]);
+    // console.log("set: ", set);
+    // const images = await imageSet.map((imageSet, i) => imageSet.LargeImage)
+    // console.log("images: ", images);
+
+
     const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
+
+    const figureSetURLsMatch = imageSet.filter(item => item.ASIN[0] == this.props.match.params.id);
+    console.log("figureSetURLsMatch: ", figureSetURLsMatch);
+
+    const figureSetURLs = figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
+    console.log("figureSetURLs: ", figureSetURLs);
 
     this.setState({
       figure: figure[0],
@@ -37,24 +57,28 @@ class FigureDetails extends Component {
       lowestPriceNew: figure[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
       listPrice: figure[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0],
       releaseDate: figure[0].ItemAttributes[0].ReleaseDate[0],
+      figureSetURLs: figureSetURLs,
     });
   }
 
   render() {
 
-    const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate } = this.state;
+    const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate, figureSetURLs } = this.state;
 
+    // console.log("Figure state: ", figure);
     // console.log("id state: ", id);
     // console.log("image state: ", image);
     // console.log("title state: ", title);
     // console.log("feature state: ", feature);
     // console.log("amazonUrl state: ", amazonUrl);
-    // console.log("lowestPriceNew state: ", lowestPriceNew);
+    console.log("lowestPriceNew state: ", lowestPriceNew);
     // console.log("listPrice state: ", listPrice);
     // console.log("releaseDate state: ", releaseDate);
-    // console.log("FigureDetail DATA: ", figure );
+    // console.log("FigureDetail state: ", figure );
+    console.log("figureSetURLs state: ", figureSetURLs);
 
     return (
+      <TheDetail>
       <div className="card col-xs-12 col-sm-6 col-md-4" key={id}>
         <Overdrive id={id} duration="500">
           <img id={id} className="card-img-top" src={image} alt={id} />
@@ -71,8 +95,34 @@ class FigureDetails extends Component {
           <PostWishListButton id={id} title={title} image={image} feature={feature}  />
         </div>
       </div>
+
+  <StyleRoot>
+    <Coverflow
+      displayQuantityOfSide={1}
+      navigation
+      infiniteScroll
+      media={{
+        '@media (max-width: 900px)': {
+          width: '600px',
+          height: '300px'
+        },
+        '@media (min-width: 900px)': {
+          width: '960px',
+          height: '600px'
+        }
+      }}
+          >
+            { figureSetURLs.map(setURL => <img src={setURL} alt=''/>)}
+    </Coverflow>
+  </StyleRoot>
+
+</TheDetail>
     );
   }
 }
 
 export default FigureDetails;
+
+const TheDetail = styled.div`
+display: flex;
+`
