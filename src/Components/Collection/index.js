@@ -44,7 +44,7 @@ class Collection extends Component {
             <div id="shelfDiv" className="container">
               {this.state.figures.map(figure =>
                 <div className="card" >
-                  <img className="card-img-top" src={figure.image} alt="Card image cap"/>
+                  <img className="card-img-top " src={figure.image} alt="Card image cap"/>
                   <div className="card-body">
                     <p className="card-text">{figure.title}</p>
                   </div>

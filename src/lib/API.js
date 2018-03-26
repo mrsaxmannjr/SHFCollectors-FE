@@ -53,4 +53,8 @@ export default {
       body: JSON.stringify(data),
     }).then(res => res.json());
   },
+  async getAchievementsData() {
+    const response = await fetch(`${API_URL}achievements`);
+    return response.json();
+  },
 };
