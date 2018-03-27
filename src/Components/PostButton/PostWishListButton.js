@@ -18,10 +18,10 @@ class PostWishListButton extends Component {
     event.preventDefault();
     console.log("STATE: ", this.state);
     const data = {
-      ASIN: this.state.ASIN,
-      title: this.state.title,
-      image: this.state.image,
-      feature: this.state.feature,
+      ASIN: this.props.id,
+      title: this.props.title,
+      image: this.props.image,
+      feature: this.props.feature,
     };
     console.log("Fig Data from FORM: ", data);
     API.postWishListData(data);
