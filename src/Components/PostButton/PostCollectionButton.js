@@ -34,7 +34,7 @@ class PostCollectionButton extends Component {
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
-          <button type="submit" id="submit">Add to Collection</button>
+          <button className="btn btn-primary" type="submit" id="submit">Add to Collection</button>
         </form>
       </div>
     );

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Overdrive from "react-overdrive";
 import styled from "styled-components";
-
 import Coverflow from 'react-coverflow';
 import { StyleRoot } from 'radium';
 
@@ -28,6 +26,7 @@ class FigureDetails extends Component {
 
   async componentDidMount() {
     const data = await API.getAllTEST();
+    console.log("DATA: ", data);
     const figures = await data.filter(figure => figure.LargeImage);
 
     const imageSet = await data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
@@ -38,13 +37,12 @@ class FigureDetails extends Component {
     // const images = await imageSet.map((imageSet, i) => imageSet.LargeImage)
     // console.log("images: ", images);
 
+    const figure = await figures.filter(item => item.ASIN[0] == this.props.match.params.id)
 
-    const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
-
-    const figureSetURLsMatch = imageSet.filter(item => item.ASIN[0] == this.props.match.params.id);
+    const figureSetURLsMatch = await imageSet.filter(item => item.ASIN[0] == this.props.match.params.id);
     console.log("figureSetURLsMatch: ", figureSetURLsMatch);
 
-    const figureSetURLs = figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
+    const figureSetURLs = await figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
     console.log("figureSetURLs: ", figureSetURLs);
 
     this.setState({
@@ -62,7 +60,6 @@ class FigureDetails extends Component {
   }
 
   render() {
-
     const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate, figureSetURLs } = this.state;
 
     // console.log("Figure state: ", figure);
@@ -71,52 +68,47 @@ class FigureDetails extends Component {
     // console.log("title state: ", title);
     // console.log("feature state: ", feature);
     // console.log("amazonUrl state: ", amazonUrl);
-    console.log("lowestPriceNew state: ", lowestPriceNew);
+    // console.log("lowestPriceNew state: ", lowestPriceNew);
     // console.log("listPrice state: ", listPrice);
     // console.log("releaseDate state: ", releaseDate);
     // console.log("FigureDetail state: ", figure );
     console.log("figureSetURLs state: ", figureSetURLs);
 
     return (
+      <div>
       <TheDetail>
-      <div className="card col-xs-12 col-sm-6 col-md-4" key={id}>
-        <Overdrive id={id} duration="500">
-          <img id={id} className="card-img-top" src={image} alt={id} />
-        </Overdrive>
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{feature}</p>
-          <h5 className="card-title">Release Date: {releaseDate}</h5>
-          <h5 className="card-title">Current List Price New: {listPrice}</h5>
-          <h5 className="card-title">Best Price New: {lowestPriceNew}</h5>
-          <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
-          <a href={amazonUrl} target="_blank" className="btn btn-primary">Add to your Collectors Wish List</a>
-          <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
-          <PostWishListButton id={id} title={title} image={image} feature={feature}  />
-        </div>
-      </div>
+        <TheDetailCard className="card col-xs-12 col-sm-6 col-md-4" key={id}>
+          <img id={id} className="card-img-top fig img-fluid" src={image} alt={id} />
+        </TheDetailCard>
 
-  <StyleRoot>
-    <Coverflow
-      displayQuantityOfSide={1}
-      navigation
-      infiniteScroll
-      media={{
-        '@media (max-width: 900px)': {
-          width: '600px',
-          height: '300px'
-        },
-        '@media (min-width: 900px)': {
-          width: '960px',
-          height: '600px'
-        }
-      }}
-          >
+        <StyleRoot>
+          <Coverflow displayQuantityOfSide={1} active={0} navigation infiniteScroll
+           media={{'@media (max-width: 900px)': { width: '600px', height: '300px'},
+                    '@media (min-width: 900px)': { width: '960px', height: '550px'}}}>
             { figureSetURLs.map(setURL => <img src={setURL} alt=''/>)}
-    </Coverflow>
-  </StyleRoot>
+          </Coverflow>
+        </StyleRoot>
+      </TheDetail>
 
-</TheDetail>
+      <TheDescription>
+
+            <h3 className=" text-left">{title}</h3>
+          <p className="">{feature}</p>
+          <div className="flex">
+          <div>
+            <h5 className="">Release Date: {releaseDate}</h5>
+            <h5 className="">Current List Price New: {listPrice}</h5>
+              <h5 className="">Best Price New: {lowestPriceNew}</h5>
+            <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
+            </div>
+            <div>
+            <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
+              <PostWishListButton id={id} title={title} image={image} feature={feature} />
+            </div>
+          </div>
+    </TheDescription>
+
+</div>
     );
   }
 }
@@ -125,4 +117,25 @@ export default FigureDetails;
 
 const TheDetail = styled.div`
 display: flex;
+
+@media (max-width: 900px) {
+  flex-wrap: wrap;
+}
+`
+
+const TheDetailCard = styled.div`
+img {
+  object-fit: contain;
+  height: 550px;
+  width: 100%;
+}
+`
+const TheDescription = styled.div`
+padding: 0 2rem 0 1rem;
+
+.flex {
+  display:flex;
+  justify-content: flex:start;
+
+}
 `

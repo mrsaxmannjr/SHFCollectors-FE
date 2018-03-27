@@ -34,7 +34,7 @@ class PostWishListButton extends Component {
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
-          <button type="submit" id="submit">Add to Collection Wish List</button>
+          <button className="btn btn-primary"type="submit" id="submit">Add to Wish List</button>
         </form>
       </div>
     );

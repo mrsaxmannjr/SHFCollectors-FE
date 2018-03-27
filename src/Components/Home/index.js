@@ -38,6 +38,8 @@ class Home extends Component {
           </a>
         </div>
 
+// A new standard in action figures representing the state of the art of Bandai's design technology. Designed to perfectly mimic the range of motion of the human body, the series name is a contraction of the concepts of "Simple Style" and "Heroic Action." Standing roughly 14cm tall, the highly posable SH Figuarts figures are designed to feel like little treasures.
+
         <FiguresGrid />
 
       </TheHome>
