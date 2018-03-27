@@ -27,22 +27,22 @@ class FigureDetails extends Component {
   async componentDidMount() {
     const data = await API.getAllTEST();
     console.log("DATA: ", data);
-    const figures = await data.filter(figure => figure.LargeImage);
+    const figures = data.filter(figure => figure.LargeImage);
 
-    const imageSet = await data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
+    const imageSet = data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
     // console.log("imageSet: ", imageSet);
-    const set = await imageSet[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
+    const set = imageSet[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
     // const setURLs = await set.map(img => img.LargeImage[0].URL[0]);
     // console.log("set: ", set);
     // const images = await imageSet.map((imageSet, i) => imageSet.LargeImage)
     // console.log("images: ", images);
 
-    const figure = await figures.filter(item => item.ASIN[0] == this.props.match.params.id)
+    const figure = figures.filter(item => item.ASIN[0] == this.props.match.params.id)
 
-    const figureSetURLsMatch = await imageSet.filter(item => item.ASIN[0] == this.props.match.params.id);
+    const figureSetURLsMatch = imageSet.filter(item => item.ASIN[0] == this.props.match.params.id);
     console.log("figureSetURLsMatch: ", figureSetURLsMatch);
 
-    const figureSetURLs = await figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
+    const figureSetURLs = figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
     console.log("figureSetURLs: ", figureSetURLs);
 
     this.setState({
@@ -84,7 +84,7 @@ class FigureDetails extends Component {
         <StyleRoot>
           <Coverflow displayQuantityOfSide={1} active={0} navigation infiniteScroll
            media={{'@media (max-width: 900px)': { width: '600px', height: '300px'},
-                    '@media (min-width: 900px)': { width: '960px', height: '550px'}}}>
+                    '@media (min-width: 900px)': { width: '960px', height: '540px'}}}>
             { figureSetURLs.map(setURL => <img src={setURL} alt=''/>)}
           </Coverflow>
         </StyleRoot>
@@ -99,10 +99,10 @@ class FigureDetails extends Component {
             <h5 className="">Release Date: {releaseDate}</h5>
             <h5 className="">Current List Price New: {listPrice}</h5>
               <h5 className="">Best Price New: {lowestPriceNew}</h5>
-            <a href={amazonUrl} target="_blank" className="btn btn-primary">Buy it on Amazon!</a>
             </div>
-            <div>
-            <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
+            <div className="buttons">
+            <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a>
+              <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
               <PostWishListButton id={id} title={title} image={image} feature={feature} />
             </div>
           </div>
@@ -126,7 +126,7 @@ display: flex;
 const TheDetailCard = styled.div`
 img {
   object-fit: contain;
-  height: 550px;
+  height: 540px;
   width: 100%;
 }
 `
@@ -135,7 +135,16 @@ padding: 0 2rem 0 1rem;
 
 .flex {
   display:flex;
-  justify-content: flex:start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
 
+.buttons {
+  display:flex;
+  flex-direction: row;
+}
+
+.button-padding {
+  margin-right: 1rem;
 }
 `

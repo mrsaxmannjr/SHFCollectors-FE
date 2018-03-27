@@ -23,10 +23,7 @@ class WishList extends Component {
       <TheWishList>
         <div id="myTabContent" className="tab-content">
           <div className="tab-pane fade show active" id="collection">
-            <h5 id="collection-progress">Collection Progress</h5>
-              <div className="progress ">
-                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
-              </div>
+
             <div id="shelfDiv" className="container">
               {this.state.figures.map(figure =>
                 <div className="card" >

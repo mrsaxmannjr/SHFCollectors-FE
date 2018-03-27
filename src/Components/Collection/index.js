@@ -5,7 +5,7 @@ import styled from "styled-components";
 import API from "../../lib/API";
 import WishList from "../WishList";
 import Achievements from "../Achievements";
-import shelf from "./shelf.png";
+import shelf from "./shelfTest.jpg";
 
 
 class Collection extends Component {
@@ -40,13 +40,17 @@ class Collection extends Component {
           <div className="tab-pane fade show active" id="collection">
             <h5 id="collection-progress">Collection Progress</h5>
             <div className="progress ">
-              <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
+              <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
             </div>
-            <div id="shelfDiv" className="container" style={{backgroundImage: `url(${shelf})`}}>
+            <div id="shelfDiv" className="container">
               {this.state.figures.map(figure =>
-                <div className="row shadowDiv" >
-                  <img className="card-img-top fig" src={figure.image} alt="Card image cap"/>
-
+              <div>
+                <div className="shadowDiv" >
+                  <img className="fig" src={figure.image} alt="image cap" />
+                </div>
+                <div>
+                  <img className="shelf" src={shelf} alt="shelfTest" />
+                  </div>
                 </div>
               )}
             </div>
@@ -72,24 +76,25 @@ padding-top: 1rem;
   padding-bottom: .5rem;
 }
 #shelfDiv {
-  background: no-repeat center;
-  background-size: cover;
-  margin-top: 2rem;
-  height: 50rem;
+
+}
+
+.shadowDiv {
   display: flex;
   justify-content: flex-start;
 }
 
-.shadowDiv {
-  margin-left: 3.4rem;
-  margin-right: 3.6rem;
+.fig {
+  margin-left: 18px;
+  margin-bottom: -25px;
 }
 
-.fig {
-  height: 150px;
-  width: auto;
-  padding: .5rem .25rem 0 .25rem;
-  box-shadow: 0 10px 6px -6px black;
+.shelf {
+
+
+  height: 20px;
+  width: 400px;
+
 }
 
 `;
