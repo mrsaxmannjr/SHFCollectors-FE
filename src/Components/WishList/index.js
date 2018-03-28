@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import API from "../../lib/API";
+import PostCollectionButton from "../PostButton/PostCollectionButton";
 
 class WishList extends Component {
   state = {
@@ -18,6 +19,7 @@ class WishList extends Component {
   }
 
   render() {
+    const { figures } = this.state;
     // console.log("WishList state: ", this.state.figures);
     return (
       <TheWishList>
@@ -25,11 +27,12 @@ class WishList extends Component {
           <div className="tab-pane fade show active" id="collection">
 
             <div id="shelfDiv" className="container">
-              {this.state.figures.map(figure =>
+              {figures.map(figure =>
                 <div className="card" >
                   <img className="card-img-top" src={figure.image} alt="Card image cap"/>
                   <div className="card-body">
                     <p className="card-text">{figure.title}</p>
+                    <PostCollectionButton id={figure.id} title={figure.title} image={figure.image} feature={figure.feature}  />
                   </div>
                 </div>
               )}

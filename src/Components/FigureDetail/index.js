@@ -26,11 +26,11 @@ class FigureDetails extends Component {
 
   async componentDidMount() {
     const data = await API.getAllTEST();
-    console.log("DATA: ", data);
+    // console.log("DATA: ", data);
     const figures = data.filter(figure => figure.LargeImage);
 
     const imageSet = data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
-    console.log("imageSet: ", imageSet);
+    // console.log("imageSet: ", imageSet);
     const set = imageSet[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
     // const setURLs = await set.map(img => img.LargeImage[0].URL[0]);
     // console.log("set: ", set);
@@ -40,10 +40,10 @@ class FigureDetails extends Component {
     const figure = figures.filter(item => item.ASIN[0] + '' === '' + this.props.match.params.id)
 
     const figureSetURLsMatch = imageSet.filter(item => item.ASIN[0] + '' === '' + this.props.match.params.id);
-    console.log("figureSetURLsMatch: ", figureSetURLsMatch);
+    // console.log("figureSetURLsMatch: ", figureSetURLsMatch);
 
     const figureSetURLs = figureSetURLsMatch && figureSetURLsMatch[0] && figureSetURLsMatch[0].ImageSets && figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]) || [];
-    console.log("figureSetURLs: ", figureSetURLs);
+    // console.log("figureSetURLs: ", figureSetURLs);
 
     this.setState({
       figure: figure[0],
@@ -72,7 +72,7 @@ class FigureDetails extends Component {
     // console.log("listPrice state: ", listPrice);
     // console.log("releaseDate state: ", releaseDate);
     // console.log("FigureDetail state: ", figure );
-    console.log("figureSetURLs state: ", figureSetURLs);
+    // console.log("figureSetURLs state: ", figureSetURLs);
 
     return (
       <div>

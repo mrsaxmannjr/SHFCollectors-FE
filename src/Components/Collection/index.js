@@ -10,21 +10,35 @@ import shelf from "./shelfTest.jpg";
 
 class Collection extends Component {
   state = {
-      figures: [],
+    figures: [],
+    collectionProgress: 0,
     };
 
   async componentDidMount() {
     const figures = await API.getCollectionData();
-    // console.log(figures.collection.map(figure => figure.feature));
+    const wishListData = await API.getWishListData();
+    console.log("wishListData: ", wishListData);
+    const collectionProgress =  10 * (figures.collection.map((figure, index) => index).length);
+    const wishListProgress =  10 * (wishListData.wishlist.map((data, index) => index).length);
+    console.log("collectionProgress: ", collectionProgress);
+    console.log("wishListProgress: ", wishListProgress);
+
     this.setState({
-      figures: figures.collection
+      figures: figures.collection,
+      collectionProgress: collectionProgress,
     });
   }
 
   render() {
-    // console.log("Collection state: ", this.state.figures);
+    const { figures, collectionProgress } = this.state;
+    // console.log("Collection state: ", figures);
+    // console.log("collectionProgress: ", collectionProgress);
+
     return (
       <TheCollection>
+         <div className="progress collection-percent">
+              <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style={{ width: `${collectionProgress}%` }}>{collectionProgress}%</div>
+            </div>
         <ul className="nav nav-tabs nav-justified nav-fill ">
           <li className="nav-item">
             <a className="nav-link active" data-toggle="tab" href="#collection">Collection</a>
@@ -38,15 +52,12 @@ class Collection extends Component {
         </ul>
         <div id="myTabContent" className="tab-content">
           <div className="tab-pane fade show active" id="collection">
-            <h5 id="collection-progress">Collection Progress</h5>
-            <div className="progress ">
-              <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
-            </div>
-            <div id="shelfDiv" className="container">
-              {this.state.figures.map(figure =>
+
+            <div id="shelfDiv" className="">
+              {figures.map(figure =>
               <div>
-                <div className="shadowDiv" >
-                  <img className="fig" src={figure.image} alt="image cap" />
+                <div className="figureDiv" >
+                  <img className="figure" src={figure.image} alt="image cap" />
                 </div>
                 <div>
                   <img className="shelf" src={shelf} alt="shelfTest" />
@@ -71,30 +82,33 @@ export default Collection;
 
 const TheCollection = styled.div`
 padding-top: 1rem;
-#collection-progress{
-  padding-top: 1rem;
-  padding-bottom: .5rem;
+
+.collection-percent{
+  margin-top: .5rem;
+  margin-bottom: 1.5rem;
 }
 #shelfDiv {
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.shadowDiv {
+.figureDiv {
   display: flex;
   justify-content: flex-start;
 }
 
-.fig {
+.figure {
   margin-left: 18px;
-  margin-bottom: -25px;
+  margin-bottom: -30px;
 }
 
 .shelf {
-
-
   height: 20px;
   width: 400px;
-
+  margin-bottom: 2rem;
 }
 
 `;

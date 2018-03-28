@@ -15,9 +15,6 @@ const Header = () => (
         <li className="nav-item">
           <Link className="nav-link" to="/Collection">COLLECTION</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/About">ABOUT</Link>
-        </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
         <input className="form-control mr-sm-2" type="text" placeholder="Search" />

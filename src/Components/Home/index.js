@@ -38,7 +38,19 @@ class Home extends Component {
           </a>
         </div>
 
-                {/* // A new standard in action figures representing the state of the art of Bandai's design technology. Designed to perfectly mimic the range of motion of the human body, the series name is a contraction of the concepts of "Simple Style" and "Heroic Action." Standing roughly 14cm tall, the highly posable SH Figuarts figures are designed to feel like little treasures. */}
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">Welcome to S.H.F.Collectors!</h1>
+            <p className="lead">S.H.F. Collectors is the place to be when you want to browse the catalog of fantastic figures from S.H.Figuarts! Find the best deals, browse figure features, populate your virtual collection and unlock collector achievements!</p>
+            <br />
+
+            <h3 className="display-5">Why S.H.Figuarts?</h3>
+
+            <p className="lead">S.H.Figuarts represents a new standard in action figures brought about by Bandai's state of the art of design technology. Designed to perfectly mimic the range of motion of the human body, the series name is a contraction of the concepts of "Simple Style" and "Heroic Action." Standing roughly 14cm tall, the highly posable SH Figuarts figures are designed to feel like little treasures.</p>
+            <br />
+            <h3 className="display-6">Find the next addition for your collection below!</h3>
+          </div>
+        </div>
 
         <FiguresGrid />
 

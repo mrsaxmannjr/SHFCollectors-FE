@@ -13,15 +13,15 @@ class Achievements extends Component {
   async componentDidMount() {
     const figures = await API.getCollectionData();
     const achievements = await API.getAchievementsData();
-    console.log("Figures Data: ", figures);
-    console.log("Achievement Data: ", achievements);
-    console.log("Collection ASINs:", figures.collection.map(figure => figure.ASIN));
+    // console.log("Figures Data: ", figures);
+    // console.log("Achievement Data: ", achievements);
+    // console.log("Collection ASINs:", figures.collection.map(figure => figure.ASIN));
     const AsinArray = figures.collection.map(figure => figure.ASIN);
 
 
     const trueSaiyans = AsinArray.filter(ASIN => ASIN.includes("B078K3YWN3") || ASIN.includes("B06XC8G4TJ") || ASIN.includes("B06XFXHFHL") || ASIN.includes("B075YZPM1P"));
-    console.log("titlesArray: ", AsinArray);
-    console.log("Achievement Check:", trueSaiyans.length === 4 ? true : false);
+    // console.log("titlesArray: ", AsinArray);
+    // console.log("Achievement Check:", trueSaiyans.length === 4 ? true : false);
     const unlockedAchievements = [];
     this.setState({
       figures: figures.collection,
@@ -31,8 +31,8 @@ class Achievements extends Component {
 
   render() {
     const { figures, achievements } = this.state;
-    console.log("Collection state: ", figures);
-    console.log("Achievement state: ", achievements);
+    // console.log("Collection state: ", figures);
+    // console.log("Achievement state: ", achievements);
     return (
       <TheAchievements>
           <section className="row">

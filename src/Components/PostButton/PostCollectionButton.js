@@ -16,25 +16,26 @@ class PostCollectionButton extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("STATE: ", this.state, "PROPS:", this.props);
+    // console.log("STATE: ", this.state, "PROPS:", this.props);
     const data = {
       ASIN: this.props.id,
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
     };
-    console.log("Fig Data from FORM: ", data);
+    // console.log("Fig Data from FORM: ", data);
     if (data.ASIN !== undefined) {
-      console.log("Fig Data from FORM: ", data);
+      // console.log("Fig Data from FORM: ", data);
       API.postCollectionData(data);
     }
   }
 
   render() {
-    console.log("id DATA from FigureDetail: ", this.props.id);
-    console.log("title DATA from FigureDetail: ", this.props.title);
-    console.log("image DATA from FigureDetail: ", this.props.image);
-    console.log("feature DATA from FigureDetail: ", this.props.feature);
+    // console.log("id DATA from FigureDetail: ", this.props.id);
+    // console.log("title DATA from FigureDetail: ", this.props.title);
+    // console.log("image DATA from FigureDetail: ", this.props.image);
+    // console.log("feature DATA from FigureDetail: ", this.props.feature);
+
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>

@@ -16,22 +16,23 @@ class PostWishListButton extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("STATE: ", this.state);
+    // console.log("STATE: ", this.state);
     const data = {
       ASIN: this.props.id,
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
     };
-    console.log("Fig Data from FORM: ", data);
+    // console.log("Fig Data from FORM: ", data);
     API.postWishListData(data);
   }
 
   render() {
-    console.log("id DATA from FigureDetail: ", this.props.id);
-    console.log("title DATA from FigureDetail: ", this.props.title);
-    console.log("image DATA from FigureDetail: ", this.props.image);
-    console.log("feature DATA from FigureDetail: ", this.props.feature);
+    // console.log("id DATA from FigureDetail: ", this.props.id);
+    // console.log("title DATA from FigureDetail: ", this.props.title);
+    // console.log("image DATA from FigureDetail: ", this.props.image);
+    // console.log("feature DATA from FigureDetail: ", this.props.feature);
+
     return (
       <div>
         <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
