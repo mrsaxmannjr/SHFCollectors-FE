@@ -12,36 +12,51 @@ class Collection extends Component {
   state = {
     figures: [],
     collectionProgress: 0,
+    progressPercent: 0,
     };
 
   async componentDidMount() {
     const figures = await API.getCollectionData();
     const wishListData = await API.getWishListData();
     console.log("wishListData: ", wishListData);
-    const collectionProgress =  10 * (figures.collection.map((figure, index) => index).length);
-    const wishListProgress =  10 * (wishListData.wishlist.map((data, index) => index).length);
+    const collectionProgress = figures.collection.map((figure, index) => index).length;
+    const wishListProgress = wishListData.wishlist.map((data, index) => index).length;
+    const progressPercent = Math.floor((collectionProgress / wishListProgress) * 100);
     console.log("collectionProgress: ", collectionProgress);
     console.log("wishListProgress: ", wishListProgress);
+    console.log("progressPercent: ", progressPercent);
 
     this.setState({
       figures: figures.collection,
       collectionProgress: collectionProgress,
+      progressPercent: progressPercent,
     });
   }
 
   render() {
-    const { figures, collectionProgress } = this.state;
+    const { figures, collectionProgress, progressPercent } = this.state;
     // console.log("Collection state: ", figures);
     // console.log("collectionProgress: ", collectionProgress);
 
     return (
       <TheCollection>
-         <div className="progress collection-percent">
-              <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style={{ width: `${collectionProgress}%` }}>{collectionProgress}%</div>
-            </div>
+    <div className="card border-primary hero ">
+  <h3 className=" card-header display-7 text-center border-primary text-primary">COLLECTION</h3>
+          <div className="card-body card-padding">
+          <p className=" card-header  ">Progress</p>
+
+            <div className="progress collection-percent text-center">
+
+              <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style={{ width: `${progressPercent}%` }}>{progressPercent}%</div>
+          </div>
+  </div>
+</div>
+
+
+
         <ul className="nav nav-tabs nav-justified nav-fill ">
-          <li className="nav-item">
-            <a className="nav-link active" data-toggle="tab" href="#collection">Collection</a>
+          <li className="nav-item ">
+            <a className="nav-link active " data-toggle="tab" href="#collection">Collection</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#wish-list">Wish List</a>
@@ -50,8 +65,8 @@ class Collection extends Component {
             <a className="nav-link" data-toggle="tab" href="#achievements">Achievements</a>
           </li>
         </ul>
-        <div id="myTabContent" className="tab-content">
-          <div className="tab-pane fade show active" id="collection">
+        <div id="myTabContent" className="tab-content ">
+          <div className="tab-pane fade show active " id="collection">
 
             <div id="shelfDiv" className="">
               {figures.map(figure =>
@@ -66,7 +81,7 @@ class Collection extends Component {
               )}
             </div>
           </div>
-          <div className="tab-pane fade" id="wish-list">
+          <div className="tab-pane fade container" id="wish-list">
             <WishList />
           </div>
           <div className="tab-pane fade" id="achievements">
@@ -83,9 +98,15 @@ export default Collection;
 const TheCollection = styled.div`
 padding-top: 1rem;
 
+.hero {
+  margin-bottom: 3rem;
+}
+
+.card-padding {
+  padding-bottom: 2rem;
+}
 .collection-percent{
-  margin-top: .5rem;
-  margin-bottom: 1.5rem;
+
 }
 #shelfDiv {
   display: flex;

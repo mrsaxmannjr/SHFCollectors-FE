@@ -10,12 +10,13 @@ class PostCollectionButton extends Component {
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
+      amazonUrl: this.props.amazonUrl,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
+    // event.preventDefault();
     // console.log("STATE: ", this.state, "PROPS:", this.props);
     const data = {
       ASIN: this.props.id,
@@ -27,6 +28,7 @@ class PostCollectionButton extends Component {
     if (data.ASIN !== undefined) {
       // console.log("Fig Data from FORM: ", data);
       API.postCollectionData(data);
+      API.postWishListData(data);
     }
   }
 
@@ -35,12 +37,11 @@ class PostCollectionButton extends Component {
     // console.log("title DATA from FigureDetail: ", this.props.title);
     // console.log("image DATA from FigureDetail: ", this.props.image);
     // console.log("feature DATA from FigureDetail: ", this.props.feature);
+    console.log("amazonUrl DATA from FigureDetail: ", this.props.amazonUrl);
 
     return (
       <div>
-        <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
-          <button className="btn btn-primary btn-success button-padding" type="submit" id="submit">Add to Collection</button>
-        </form>
+        <a href={this.props.amazonUrl} target="_blank" className="btn btn-primary button-padding" id="submit" onClick={this.handleSubmit}>Buy it on Amazon!</a>
       </div>
     );
   }

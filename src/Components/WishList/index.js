@@ -24,21 +24,19 @@ class WishList extends Component {
     return (
       <TheWishList>
         <div id="myTabContent" className="tab-content">
-          <div className="tab-pane fade show active" id="collection">
-
-            <div id="shelfDiv" className="container">
+            <section  id="shelfDiv" className="row">
               {figures.map(figure =>
-                <div className="card" >
+              <div className="card col-xs-12 col-sm-6 col-md-3 border-primary align-items-center figure" >
+                                    <PostCollectionButton  id={figure.id} title={figure.title} image={figure.image} feature={figure.feature}  />
+
                   <img className="card-img-top" src={figure.image} alt="Card image cap"/>
                   <div className="card-body">
-                    <p className="card-text">{figure.title}</p>
-                    <PostCollectionButton id={figure.id} title={figure.title} image={figure.image} feature={figure.feature}  />
+                    <p className="card-title">{figure.title}</p>
                   </div>
                 </div>
               )}
-            </div>
+            </section>
           </div>
-        </div>
       </TheWishList>
     );
   }
@@ -47,16 +45,7 @@ class WishList extends Component {
 export default WishList;
 
 const TheWishList = styled.div`
-#collection-progress {
-  padding-top: 1rem;
-  padding-bottom: .5rem;
-}
-
-#shelfDiv {
-  display: flex;
-}
-
-.card {
-  width: 10rem;
+.figure {
+  padding-top:1rem;
 }
 `;

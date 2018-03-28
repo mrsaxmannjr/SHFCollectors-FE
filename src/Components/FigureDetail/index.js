@@ -101,8 +101,8 @@ class FigureDetails extends Component {
               <h5 className="">Best Price New: {lowestPriceNew}</h5>
             </div>
             <div className="buttons">
-            <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a>
-              <PostCollectionButton id={id} title={title} image={image} feature={feature}  />
+            {/* <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a> */}
+              <PostCollectionButton id={id} title={title} image={image} feature={feature}  amazonUrl={amazonUrl} />
               <PostWishListButton id={id} title={title} image={image} feature={feature} />
             </div>
           </div>
