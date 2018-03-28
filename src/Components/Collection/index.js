@@ -9,11 +9,14 @@ import shelf from "./shelfTest.jpg";
 
 
 class Collection extends Component {
-  state = {
-    figures: [],
-    collectionProgress: 0,
-    progressPercent: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      figures: [],
+      progressPercent: 0,
     };
+    this.componentReMount = this.componentReMount.bind(this);
+  }
 
   async componentDidMount() {
     const figures = await API.getCollectionData();
@@ -28,30 +31,45 @@ class Collection extends Component {
 
     this.setState({
       figures: figures.collection,
-      collectionProgress: collectionProgress,
-      progressPercent: progressPercent,
+      progressPercent,
+    });
+  }
+
+  async componentReMount() {
+    const figures = await API.getCollectionData();
+    const wishListData = await API.getWishListData();
+    console.log("wishListData: ", wishListData);
+    const collectionProgress = figures.collection.map((figure, index) => index).length;
+    const wishListProgress = wishListData.wishlist.map((data, index) => index).length;
+    const progressPercent = Math.floor((collectionProgress / wishListProgress) * 100);
+    console.log("collectionProgress: ", collectionProgress);
+    console.log("wishListProgress: ", wishListProgress);
+    console.log("progressPercent: ", progressPercent);
+
+    this.setState({
+      figures: figures.collection,
+      progressPercent,
     });
   }
 
   render() {
-    const { figures, collectionProgress, progressPercent } = this.state;
+    const { figures, progressPercent } = this.state;
     // console.log("Collection state: ", figures);
     // console.log("collectionProgress: ", collectionProgress);
 
     return (
       <TheCollection>
-    <div className="card border-primary hero ">
-  <h3 className=" card-header display-7 text-center border-primary text-primary">COLLECTION</h3>
+        <div className="card border-primary hero ">
+          <h3 className=" card-header display-7 text-center border-primary text-primary">COLLECTION</h3>
           <div className="card-body card-padding">
-          <p className=" card-header  ">Progress</p>
+            <p className=" card-header  ">Progress</p>
 
             <div className="progress collection-percent text-center">
 
               <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style={{ width: `${progressPercent}%` }}>{progressPercent}%</div>
+            </div>
           </div>
-  </div>
-</div>
-
+        </div>
 
 
         <ul className="nav nav-tabs nav-justified nav-fill ">
@@ -70,19 +88,19 @@ class Collection extends Component {
 
             <div id="shelfDiv" className="">
               {figures.map(figure =>
-              <div>
-                <div className="figureDiv" >
-                  <img className="figure" src={figure.image} alt="image cap" />
-                </div>
-                <div>
-                  <img className="shelf" src={shelf} alt="shelfTest" />
+                (<div>
+                  <div className="figureDiv" >
+                    <img className="figure" src={figure.image} alt="image cap" />
                   </div>
-                </div>
+                  <div>
+                    <img className="shelf" src={shelf} alt="shelfTest" />
+                  </div>
+                </div>),
               )}
             </div>
           </div>
           <div className="tab-pane fade container" id="wish-list">
-            <WishList />
+            <WishList componentReMount={this.componentReMount} />
           </div>
           <div className="tab-pane fade" id="achievements">
             <Achievements />
@@ -122,7 +140,7 @@ padding-top: 1rem;
 }
 
 .figure {
-  margin-left: 18px;
+  margin-left: 20px;
   margin-bottom: -30px;
 }
 
