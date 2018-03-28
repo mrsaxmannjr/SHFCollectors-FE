@@ -1,17 +1,36 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import API from "../../lib/API";
+
+const Message = () => (
+  <div className="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Figure was added to your collection!</strong>
+    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+);
+
 
 class PostWishListButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clicked: false,
       ASIN: this.props.id,
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
     };
+    this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      clicked: true,
+    });
   }
 
   handleSubmit(event) {
@@ -35,12 +54,18 @@ class PostWishListButton extends Component {
 
     return (
       <div>
-        <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
-          <button className="btn btn-primary btn-success" type="submit" id="submit">Add to Wish List</button>
-        </form>
+        <TheForm method="post" encType="text/plain" onSubmit={this.handleSubmit}>
+          <button className="btn btn-primary btn-success" type="submit" id="submit" onClick={this.handleClick}>Add to Wish List</button>
+          {this.state.clicked ? <Message /> : null}
+        </TheForm>
       </div>
     );
   }
 }
 
 export default PostWishListButton;
+
+const TheForm = styled.form`
+display: flex;
+justify-content: space-between;
+`;
