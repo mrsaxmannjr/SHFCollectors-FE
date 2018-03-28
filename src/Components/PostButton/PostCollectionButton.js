@@ -15,7 +15,7 @@ class PostCollectionButton extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     // event.preventDefault();
     // console.log("STATE: ", this.state, "PROPS:", this.props);
     const data = {
@@ -27,8 +27,9 @@ class PostCollectionButton extends Component {
     // console.log("Fig Data from FORM: ", data);
     if (data.ASIN !== undefined) {
       // console.log("Fig Data from FORM: ", data);
-      API.postCollectionData(data);
-      API.postWishListData(data);
+      await API.postCollectionData(data);
+      await API.postWishListData(data);
+      // await this.props.componentReMount();
     }
   }
 

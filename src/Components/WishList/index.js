@@ -30,13 +30,13 @@ class WishList extends Component {
         <div id="myTabContent" className="tab-content container">
           <section id="shelfDiv" className="row">
             {figures.map(figure =>
-              (<div className="card col-xs-12 col-sm-6 col-md-2 border-primary align-items-center figure" >
+              (<div className="card col-xs-12 col-sm-6 col-md-3 border-primary align-items-center figure" >
                 <PostCollectionButtonWL id={figure.id} title={figure.title} image={figure.image} feature={figure.feature} componentReMount={this.props.componentReMount} />
-                <img className="card-img-top" src={figure.image} alt="Card image cap" />
+                <img className="card-img-top" src={figure.image} alt={figure.title} />
                 <div className="card-body">
                   <p className="card-title">{figure.title}</p>
                 </div>
-                <PostCollectionButton id={figure.id} title={figure.title} image={figure.image} feature={figure.feature} />
+                {/* <PostCollectionButton id={figure.id} title={figure.title} image={figure.image} feature={figure.feature} componentReMount={this.props.componentReMount} /> */}
               </div>),
             )}
           </section>

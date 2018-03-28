@@ -59,6 +59,22 @@ class FigureDetails extends Component {
     });
   }
 
+   async componentReMount() {
+    const figures = await API.getCollectionData();
+    const wishListData = await API.getWishListData();
+    console.log("wishListData: ", wishListData);
+    const collectionProgress = figures.collection.map((figure, index) => index).length;
+    const wishListProgress = wishListData.wishlist.map((data, index) => index).length;
+    const progressPercent = Math.floor((collectionProgress / wishListProgress) * 100);
+    console.log("collectionProgress: ", collectionProgress);
+    console.log("wishListProgress: ", wishListProgress);
+    console.log("progressPercent: ", progressPercent);
+
+    this.setState({
+      figures: figures.collection,
+      progressPercent,
+    });
+  }
   render() {
     const { figure, id, image, title, feature, amazonUrl, lowestPriceNew, listPrice, releaseDate, figureSetURLs } = this.state;
 
