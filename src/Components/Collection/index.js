@@ -99,11 +99,11 @@ class Collection extends Component {
                   <div>
                     <img className="shelf" src={shelf} alt="shelfTest" />
                   </div>
-                </div>),
+                 </div>),
               )}
             </div>
           </div>
-          <div className="tab-pane fade container" id="wish-list">
+          <div className="tab-pane fade" id="wish-list">
             <WishList componentReMount={this.componentReMount} />
           </div>
           <div className="tab-pane fade" id="achievements">

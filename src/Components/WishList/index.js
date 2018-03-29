@@ -56,10 +56,10 @@ class WishList extends Component {
     // console.log("WishList state: ", this.state.figures);
     return (
       <TheWishList>
-        <div id="myTabContent" className="tab-content container">
+        <div id="myTabContent" className="tab-content">
           <section id="shelfDiv" className="row">
             {figures.map(figure =>
-              (<div className="card col-xs-12 col-sm-6 col-md-3 border-primary align-items-center figure" >
+              (<div className="card col-xs-12 col-sm-6 col-md-2 border-primary align-items-center figure" >
                 <PostCollectionButtonWL ASIN={figure.ASIN} title={figure.title} image={figure.image} feature={figure.feature} componentReMount={this.componentReMount} />
                 <img className={this.renderContent(figure.ASIN)} src={figure.image} alt={figure.title} />
                 <div className="card-body">
