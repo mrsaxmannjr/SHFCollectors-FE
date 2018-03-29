@@ -5,7 +5,7 @@ import API from "../../lib/API";
 
 const Message = () => (
   <div className="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Figure was added to your collection!</strong>
+    <strong>Figure was added to your Wish List!</strong>
     <button type="button" className="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -53,19 +53,19 @@ class PostWishListButton extends Component {
     // console.log("feature DATA from FigureDetail: ", this.props.feature);
 
     return (
-      <div>
-        <TheForm method="post" encType="text/plain" onSubmit={this.handleSubmit}>
+      <TheForm>
+        <form method="post" encType="text/plain" onSubmit={this.handleSubmit}>
           <button className="btn btn-primary btn-success" type="submit" id="submit" onClick={this.handleClick}>Add to Wish List</button>
-          {this.state.clicked ? <Message /> : null}
-        </TheForm>
-      </div>
+        </form>
+        {this.state.clicked ? <Message /> : null}
+      </TheForm>
     );
   }
 }
 
 export default PostWishListButton;
 
-const TheForm = styled.form`
+const TheForm = styled.div`
 display: flex;
-justify-content: space-between;
+
 `;
