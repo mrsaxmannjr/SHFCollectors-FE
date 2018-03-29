@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import me from "./me.jpg";
+import logo from "./logo.png";
 
 const Header = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-    <Link className="navbar-brand" to="/">S.H.F.Collectors</Link>
+    <Link className="navbar-brand" to="/"><TheLogo src={logo} alt="logo" /></Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
@@ -39,4 +40,8 @@ img {
   margin-left: 2rem;
   margin-right: 1rem;
 }
+`;
+
+const TheLogo = styled.img`
+height: 45px;
 `;
