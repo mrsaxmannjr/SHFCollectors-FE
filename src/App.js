@@ -6,7 +6,6 @@ import Header from "./Components/Header";
 import Home from "./Components/Home";
 import FigureDetail from "./Components/FigureDetail";
 import Collection from "./Components/Collection";
-import Footer from "./Components/Footer";
 
 const App = () => (
   <Router>
@@ -17,7 +16,6 @@ const App = () => (
         <Route path="/FigureDetail/:id" component={FigureDetail} />
         <Route path="/Collection" component={Collection} />
       </Switch>
-      {/* <Footer /> */}
     </div>
   </Router>
 );

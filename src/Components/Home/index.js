@@ -40,9 +40,11 @@ class Home extends Component {
         </div>
 
         <div className="jumbotron jumbotron-fluid container-padding">
-          <img id="logo" className="float-right" src={logo} alt="" />
+          <div id="logo-div">
+            <img id="logo" className="float-right" src={logo} alt="" />
+          </div>
           <div className="container container-padding">
-            <h1 className="display-4 text-primary">Welcome to S.H.F.Collectors!</h1>
+            <h1 className="display-4 text-primary welcome img-fluid">Welcome to S.H.F.Collectors!</h1>
             <p className="lead">S.H.F. Collectors is the place to be when you want to browse the catalog of fantastic figures from S.H.Figuarts! Find the best deals, browse figure features, populate your virtual collection and unlock collector achievements!</p>
             <br />
 
@@ -71,5 +73,20 @@ const TheHome = styled.div`
 #logo {
   margin-top: -56px;
   margin-right: 15px;
+}
+
+@media (max-width: 590px) {
+  .welcome {
+    font-size: 35px;
+  }
+
+  .container-padding {
+    padding-top: 60px;
+  }
+
+  #logo-div {
+    display: flex;
+    justify-content: center;
+  }
 }
 `;

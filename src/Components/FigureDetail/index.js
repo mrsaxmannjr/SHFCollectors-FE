@@ -97,7 +97,7 @@ class FigureDetails extends Component {
           <img id={id} className="card-img-top fig img-fluid" src={image} alt={id} />
         </TheDetailCard>
 
-        <StyleRoot>
+        <StyleRoot id="carousel">
           <Coverflow displayQuantityOfSide={1} active={0} navigation infiniteScroll
            media={{'@media (max-width: 900px)': { width: '600px', height: '300px'},
                     '@media (min-width: 900px)': { width: '960px', height: '540px'}}}>
@@ -136,6 +136,9 @@ display: flex;
 
 @media (max-width: 900px) {
   flex-wrap: wrap;
+  #carousel {
+    display: none;
+  }
 }
 `
 
