@@ -113,8 +113,8 @@ class FigureDetails extends Component {
           <div className="flex">
           <div>
             <h5 className="">Release Date: {releaseDate}</h5>
-            <h5 className="">Current List Price New: {listPrice}</h5>
-              <h5 className="">Best Price New: {lowestPriceNew}</h5>
+            <h5 className="text-primary">Current List Price New: {listPrice}</h5>
+              <h5 className="text-success">Best Price New: {lowestPriceNew}</h5>
             </div>
             <div className="buttons">
             {/* <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a> */}

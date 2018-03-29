@@ -17,7 +17,7 @@ const Header = () => (
           <Link className="nav-link" to="/">HOME</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/Collection">COLLECTION</Link>
+          <Link className="nav-link" to="/Collection">MY COLLECTION</Link>
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">

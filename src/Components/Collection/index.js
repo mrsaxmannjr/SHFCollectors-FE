@@ -66,7 +66,7 @@ class Collection extends Component {
         <div className="card border-primary hero ">
           <h3 className=" card-header display-7 text-center border-primary text-primary">COLLECTION</h3>
           <div className="card-body card-padding">
-            <p className=" card-header  ">Progress</p>
+            <p className=" card-header  ">My Collection Progress</p>
 
             <div className="progress collection-percent text-center">
 
