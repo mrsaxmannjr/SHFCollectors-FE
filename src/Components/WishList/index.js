@@ -11,19 +11,48 @@ class WishList extends Component {
     super(props);
     this.state = {
       figures: [],
+      figuresCollection: [],
     };
+
+    this.renderContent = this.renderContent.bind(this);
   }
   async componentDidMount() {
     const figures = await API.getWishListData();
+    const figuresWishListLength = figures.wishlist.length;
+    console.log("figuresWishListLength: ", figuresWishListLength);
     // console.log(figures.wishlist.map(figure => figure.feature));
+    const figuresCollection = await API.getCollectionData();
+    const figuresCollectionLength = figuresCollection.collection.length;
+    console.log("figuresCollection: ", figuresCollection.collection[0].ASIN);
+    console.log("figuresCollectionLength: ", figuresCollectionLength);
+
     this.setState({
       figures: figures.wishlist,
+      figuresCollection: figuresCollection.collection,
     });
+    console.log("figuresASIN: ", this.state.figures[0].ASIN);
+    console.log("figuresCollectionASIN: ", this.state.figuresCollection[0].ASIN);
+  }
+
+  componentReMount = async () => {
+    const figuresCollection = await this.props.componentReMount();
+    this.setState({
+      figuresCollection: figuresCollection.collection,
+    });
+  }
+
+  renderContent(ASIN) {
+    const ASINS = this.state.figuresCollection.map(figure => figure.ASIN);
+    console.log("ASINS:", ASINS);
+    if (ASINS.includes(ASIN)) {
+      return "card-img-top figureImage";
+    }
+    return "card-img-top";
   }
 
   render() {
     console.log("PROPS: ", this.props);
-    const { figures } = this.state;
+    const { figures, figuresCollection } = this.state;
     // console.log("WishList state: ", this.state.figures);
     return (
       <TheWishList>
@@ -31,8 +60,8 @@ class WishList extends Component {
           <section id="shelfDiv" className="row">
             {figures.map(figure =>
               (<div className="card col-xs-12 col-sm-6 col-md-3 border-primary align-items-center figure" >
-                <PostCollectionButtonWL id={figure.id} title={figure.title} image={figure.image} feature={figure.feature} componentReMount={this.props.componentReMount} />
-                <img className="card-img-top" src={figure.image} alt={figure.title} />
+                <PostCollectionButtonWL ASIN={figure.ASIN} title={figure.title} image={figure.image} feature={figure.feature} componentReMount={this.componentReMount} />
+                <img className={this.renderContent(figure.ASIN)} src={figure.image} alt={figure.title} />
                 <div className="card-body">
                   <p className="card-title">{figure.title}</p>
                 </div>
@@ -54,4 +83,9 @@ const TheWishList = styled.div`
   padding-bottom: 1rem;
   margin-bottom: 6rem;
 }
+
+.figureImage {
+  filter: grayscale(100%);
+}
+
 `;

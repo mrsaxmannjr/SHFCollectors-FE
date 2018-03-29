@@ -34,8 +34,8 @@ class Achievements extends Component {
     // console.log("Collection state: ", figures);
     // console.log("Achievement state: ", achievements);
     return (
-      <TheAchievements>
-          <section className="row">
+      <TheAchievements className="container">
+          <section className=" row">
           {achievements.map(achievement =>
                 <div className="card col-xs-12 col-sm-6 col-md-4" >
                   <h5 className="card-title text-center">{achievement.achievement}</h5>

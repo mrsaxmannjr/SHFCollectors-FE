@@ -13,6 +13,7 @@ class Collection extends Component {
     super(props);
     this.state = {
       figures: [],
+      wishListData: [],
       progressPercent: 0,
     };
     this.componentReMount = this.componentReMount.bind(this);
@@ -31,6 +32,7 @@ class Collection extends Component {
 
     this.setState({
       figures: figures.collection,
+      wishListData: wishListData.wishlist,
       progressPercent,
     });
   }
@@ -48,8 +50,10 @@ class Collection extends Component {
 
     this.setState({
       figures: figures.collection,
+      wishListData: wishListData.wishlist,
       progressPercent,
     });
+    return Promise.resolve(figures);
   }
 
   render() {

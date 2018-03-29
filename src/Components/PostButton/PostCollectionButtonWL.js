@@ -6,7 +6,7 @@ class PostCollectionButtonWL extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ASIN: this.props.id,
+      ASIN: this.props.ASIN,
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
@@ -19,7 +19,7 @@ class PostCollectionButtonWL extends Component {
     // event.preventDefault();
     // console.log("STATE: ", this.state, "PROPS:", this.props);
     const data = {
-      ASIN: this.props.id,
+      ASIN: this.props.ASIN,
       title: this.props.title,
       image: this.props.image,
       feature: this.props.feature,
