@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+import me from "./me.jpg";
 
 const Header = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -20,8 +23,20 @@ const Header = () => (
         <input className="form-control mr-sm-2" type="text" placeholder="Search" />
         <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
+      <Me className="nav-item">
+        <a href="https://jamesmann.tech/" target="_blank" rel="noopener noreferrer"><img className="" src={me} alt="" /></a>
+      </Me>
     </div>
   </nav>
 );
 
 export default Header;
+
+const Me = styled.div`
+img {
+  height: 60px;
+  border-radius: 50%;
+  margin-left: 2rem;
+  margin-right: 1rem;
+}
+`;
