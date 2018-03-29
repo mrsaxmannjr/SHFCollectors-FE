@@ -37,7 +37,7 @@ class PostCollectionButtonWL extends Component {
     // console.log("title DATA from FigureDetail: ", this.props.title);
     // console.log("image DATA from FigureDetail: ", this.props.image);
     // console.log("feature DATA from FigureDetail: ", this.props.feature);
-    console.log("amazonUrl DATA from FigureDetail: ", this.props.amazonUrl);
+    // console.log("amazonUrl DATA from FigureDetail: ", this.props.amazonUrl);
 
     return (
       <div>

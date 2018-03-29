@@ -28,7 +28,6 @@ class FigureDetails extends Component {
     const data = await API.getAllTEST();
     // console.log("DATA: ", data);
     const figures = data.filter(figure => figure.LargeImage);
-
     const imageSet = data.filter((figure, i) => figure.ImageSets[0].ImageSet[i]);
     // console.log("imageSet: ", imageSet);
     const set = imageSet[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]);
@@ -36,12 +35,9 @@ class FigureDetails extends Component {
     // console.log("set: ", set);
     // const images = await imageSet.map((imageSet, i) => imageSet.LargeImage)
     // console.log("images: ", images);
-
     const figure = figures.filter(item => item.ASIN[0] + '' === '' + this.props.match.params.id)
-
     const figureSetURLsMatch = imageSet.filter(item => item.ASIN[0] + '' === '' + this.props.match.params.id);
     // console.log("figureSetURLsMatch: ", figureSetURLsMatch);
-
     const figureSetURLs = figureSetURLsMatch && figureSetURLsMatch[0] && figureSetURLsMatch[0].ImageSets && figureSetURLsMatch[0].ImageSets[0].ImageSet.map(img => img.LargeImage[0].URL[0]) || [];
     // console.log("figureSetURLs: ", figureSetURLs);
 
@@ -92,39 +88,35 @@ class FigureDetails extends Component {
 
     return (
       <div>
-      <TheDetail>
-        <TheDetailCard className="card col-xs-12 col-sm-6 col-md-4" key={id}>
-          <img id={id} className="card-img-top fig img-fluid" src={image} alt={id} />
-        </TheDetailCard>
-
-        <StyleRoot id="carousel">
-          <Coverflow displayQuantityOfSide={1} active={0} navigation infiniteScroll
-           media={{'@media (max-width: 900px)': { width: '600px', height: '300px'},
-                    '@media (min-width: 900px)': { width: '960px', height: '540px'}}}>
-            { figureSetURLs.map(setURL => <img src={setURL} alt=''/>)}
-          </Coverflow>
-        </StyleRoot>
-      </TheDetail>
-
-      <TheDescription>
-
-            <h3 className=" text-left">{title}</h3>
+        <TheDetail>
+          <TheDetailCard className="card col-xs-12 col-sm-6 col-md-4" key={id}>
+            <img id={id} className="card-img-top fig img-fluid" src={image} alt={id} />
+          </TheDetailCard>
+          <StyleRoot id="carousel">
+            <Coverflow displayQuantityOfSide={1} active={0} navigation infiniteScroll
+             media={{'@media (max-width: 900px)': { width: '600px', height: '300px'},
+                      '@media (min-width: 900px)': { width: '960px', height: '540px'}}}>
+              { figureSetURLs.map(setURL => <img src={setURL} alt=''/>)}
+            </Coverflow>
+          </StyleRoot>
+        </TheDetail>
+        <TheDescription>
+          <h3 className=" text-left">{title}</h3>
           <p className="">{feature}</p>
           <div className="flex">
-          <div>
-            <h5 className="">Release Date: {releaseDate}</h5>
-            <h5 className="text-primary">Current List Price New: {listPrice}</h5>
+            <div>
+              <h5 className="">Release Date: {releaseDate}</h5>
+              <h5 className="text-primary">Current List Price New: {listPrice}</h5>
               <h5 className="text-success">Best Price New: {lowestPriceNew}</h5>
             </div>
             <div className="buttons">
-            {/* <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a> */}
+              {/* <a href={amazonUrl} target="_blank" className="btn btn-primary button-padding">Buy it on Amazon!</a> */}
               <PostCollectionButton id={id} title={title} image={image} feature={feature}  amazonUrl={amazonUrl} />
               <PostWishListButton id={id} title={title} image={image} feature={feature} />
             </div>
           </div>
-    </TheDescription>
-
-</div>
+        </TheDescription>
+      </div>
     );
   }
 }
@@ -141,7 +133,6 @@ display: flex;
   }
 }
 `
-
 const TheDetailCard = styled.div`
 img {
   object-fit: contain;

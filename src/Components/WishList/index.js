@@ -19,19 +19,19 @@ class WishList extends Component {
   async componentDidMount() {
     const figures = await API.getWishListData();
     const figuresWishListLength = figures.wishlist.length;
-    console.log("figuresWishListLength: ", figuresWishListLength);
+    // console.log("figuresWishListLength: ", figuresWishListLength);
     // console.log(figures.wishlist.map(figure => figure.feature));
     const figuresCollection = await API.getCollectionData();
     const figuresCollectionLength = figuresCollection.collection.length;
-    console.log("figuresCollection: ", figuresCollection.collection[0].ASIN);
-    console.log("figuresCollectionLength: ", figuresCollectionLength);
+    // console.log("figuresCollection: ", figuresCollection.collection[0].ASIN);
+    // console.log("figuresCollectionLength: ", figuresCollectionLength);
 
     this.setState({
       figures: figures.wishlist,
       figuresCollection: figuresCollection.collection,
     });
-    console.log("figuresASIN: ", this.state.figures[0].ASIN);
-    console.log("figuresCollectionASIN: ", this.state.figuresCollection[0].ASIN);
+    // console.log("figuresASIN: ", this.state.figures[0].ASIN);
+    // console.log("figuresCollectionASIN: ", this.state.figuresCollection[0].ASIN);
   }
 
   componentReMount = async () => {
@@ -43,7 +43,7 @@ class WishList extends Component {
 
   renderContent(ASIN) {
     const ASINS = this.state.figuresCollection.map(figure => figure.ASIN);
-    console.log("ASINS:", ASINS);
+    // console.log("ASINS:", ASINS);
     if (ASINS.includes(ASIN)) {
       return "card-img-top figureImage";
     }
@@ -51,9 +51,10 @@ class WishList extends Component {
   }
 
   render() {
-    console.log("PROPS: ", this.props);
-    const { figures, figuresCollection } = this.state;
+    // console.log("PROPS: ", this.props);
     // console.log("WishList state: ", this.state.figures);
+    const { figures, figuresCollection } = this.state;
+
     return (
       <TheWishList>
         <div id="myTabContent" className="tab-content">

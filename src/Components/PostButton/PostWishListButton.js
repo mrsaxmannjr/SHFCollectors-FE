@@ -12,7 +12,6 @@ const Message = () => (
   </div>
 );
 
-
 class PostWishListButton extends Component {
   constructor(props) {
     super(props);
